@@ -10,6 +10,9 @@ import Loginpage from './views/Loginpage'
 import Dashboard from './views/Dashboard'
 import Navbar from './views/Navbar'
 import Todo from './views/Todo'
+import Message from './views/Message'
+import MessageDetail from './views/MessageDetail'
+import SearchUsers from './views/SearchUsers'
 
 
 
@@ -24,6 +27,9 @@ function App() {
           <Route component={Registerpage} path="/register" exact />
           <Route component={Homepage} path="/" exact />
           <Route component={Todo} path="/todo" exact />
+          <Route component={Message} path="/inbox" exact />
+          <Route component={MessageDetail} path="/inbox/:id" exact />
+          <Route component={SearchUsers} path="/search/:username" exact />
         </Switch>
       </AuthProvider>
     </Router>

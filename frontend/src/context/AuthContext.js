@@ -53,6 +53,7 @@ export const AuthProvider = ({ children }) => {
                 position: 'top-right',
                 timerProgressBar: true,
                 showConfirmButton: false,
+                showCancelButton: true,
             })
 
         } else {    
@@ -66,6 +67,8 @@ export const AuthProvider = ({ children }) => {
                 position: 'top-right',
                 timerProgressBar: true,
                 showConfirmButton: false,
+                showCancelButton: true,
+
             })
         }
     }
@@ -90,6 +93,8 @@ export const AuthProvider = ({ children }) => {
                 position: 'top-right',
                 timerProgressBar: true,
                 showConfirmButton: false,
+                showCancelButton: true,
+
             })
         } else {
             console.log(response.status);
@@ -102,6 +107,8 @@ export const AuthProvider = ({ children }) => {
                 position: 'top-right',
                 timerProgressBar: true,
                 showConfirmButton: false,
+                showCancelButton: true,
+
             })
         }
     }
@@ -119,6 +126,8 @@ export const AuthProvider = ({ children }) => {
             position: 'top-right',
             timerProgressBar: true,
             showConfirmButton: false,
+            showCancelButton: true,
+
         })
     }
 

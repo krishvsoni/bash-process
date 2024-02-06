@@ -1,10 +1,11 @@
-from typing import Generic
 from django.shortcuts import render
 from django.http import JsonResponse
-from api.models import User, Todo , ChatMessage , Profile
-from django.db.models import Subquery , OuterRef , Q
+from django.db.models import OuterRef, Subquery
+from django.db.models import Q
 
-from api.serializer import MyTokenObtainPairSerializer, RegisterSerializer, TodoSerializer , ChatMessageSerializer , ProfileSerializer
+from api.models import User, Todo, Profile, ChatMessage
+
+from api.serializer import MyTokenObtainPairSerializer, RegisterSerializer, TodoSerializer, MessageSerializer, ProfileSerializer,UserSerializer
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -52,7 +53,6 @@ def testEndPoint(request):
 class TodoListView(generics.ListCreateAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user_id = self.kwargs['user_id']
@@ -77,7 +77,6 @@ class TodoDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class TodoMarkAsCompleted(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TodoSerializer
-    permission_classes = [IsAuthenticated]
 
     def get_object(self):
         user_id = self.kwargs['user_id']
@@ -90,13 +89,12 @@ class TodoMarkAsCompleted(generics.RetrieveUpdateDestroyAPIView):
         todo.save()
 
         return todo
-    
 
+
+# Chat APp
 class MyInbox(generics.ListAPIView):
-    serializer_class = ChatMessageSerializer
-    permission_classes = [IsAuthenticated]
+    serializer_class = MessageSerializer
 
-    
     def get_queryset(self):
         user_id = self.kwargs['user_id']
 
@@ -117,31 +115,25 @@ class MyInbox(generics.ListAPIView):
         ).order_by("-id")
             
         return messages
-
     
 class GetMessages(generics.ListAPIView):
-    serializer_class = ChatMessageSerializer
-    permission_classes = [IsAuthenticated]
-
+    serializer_class = MessageSerializer
+    
     def get_queryset(self):
         sender_id = self.kwargs['sender_id']
         reciever_id = self.kwargs['reciever_id']
-
-        messages = ChatMessage.objects.filter(
-            sender__in=[sender_id, reciever_id],
-            reciever__in=[sender_id, reciever_id]
-        )
+        messages =  ChatMessage.objects.filter(sender__in=[sender_id, reciever_id], reciever__in=[sender_id, reciever_id])
         return messages
 
-
 class SendMessages(generics.CreateAPIView):
-    serializer_class = ChatMessageSerializer
+    serializer_class = MessageSerializer
+
 
 
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]  
 
 
 class SearchUser(generics.ListAPIView):

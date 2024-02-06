@@ -27,15 +27,15 @@ function Navbar() {
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="#"> <i className='fas fa-home'></i> Home</a>
               </li>
               {token === null && 
               <>
                 <li class="nav-item">
-                  <Link class="nav-link" to="/login">Login</Link>
+                  <Link class="nav-link" to="/login"><i className='fas fa-sign-in-alt'></i> Login</Link>
                 </li>
                 <li class="nav-item">
-                  <Link class="nav-link" to="/register">Register</Link>
+                  <Link class="nav-link" to="/register"><i className='fas fa-user-plus'></i> Register</Link>
                 </li>
               </>
               }
@@ -43,13 +43,16 @@ function Navbar() {
             {token !== null && 
               <>
                 <li class="nav-item">
-                  <Link class="nav-link" to="/dashboard">Dashboard</Link>
+                  <Link class="nav-link" to="/dashboard"> <i className='fas fa-th'></i> Dashboard</Link>
                 </li>
                 <li class="nav-item">
-                  <Link class="nav-link" to="/todo">Todo</Link>
+                  <Link class="nav-link" to="/todo"> <i className='fas fa-pen'></i> Todo</Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" onClick={logoutUser} style={{cursor:"pointer"}}>Logout</a>
+                  <Link class="nav-link" to="/inbox"> <i className='fas fa-envelope'></i> Inbox</Link>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" onClick={logoutUser} style={{cursor:"pointer"}}> <i className='fas fa-sign-out-alt'></i>Logout</a>
                 </li>
               </>
               }   

@@ -17,7 +17,6 @@ urlpatterns = [
     path("todo-detail/<user_id>/<todo_id>/", views.TodoDetailView.as_view()),
     path("todo-mark-as-completed/<user_id>/<todo_id>/", views.TodoMarkAsCompleted.as_view()),
 
-    
     # Chat/Text Messaging Functionality
     path("my-messages/<user_id>/", views.MyInbox.as_view()),
     path("get-messages/<sender_id>/<reciever_id>/", views.GetMessages.as_view()),
@@ -26,4 +25,5 @@ urlpatterns = [
     # Get profile
     path("profile/<int:pk>/", views.ProfileDetail.as_view()),
     path("search/<username>/", views.SearchUser.as_view()),
+
 ]
