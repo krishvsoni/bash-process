@@ -11,5 +11,5 @@ done
 if [ "$input" == "$reverse" ]; then
     echo "Palindrome"
 else
-    echo "Not a Palindrome"
+    echo "Not A Palindrome"
 fi
